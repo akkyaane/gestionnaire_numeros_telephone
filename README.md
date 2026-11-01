@@ -1,0 +1,1 @@
+Lancer le projet avec **cargo run --release**
