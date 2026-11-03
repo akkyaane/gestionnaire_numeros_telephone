@@ -68,3 +68,28 @@ impl Node {
         output
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::Node;
+
+    #[test]
+    fn to_plantuml_generates_mindmap() {
+        let mut root = Node::default();
+        root.insert("15", "SAMU");
+        root.insert("17", "Police");
+
+        let expected = concat!(
+            "@startmindmap\n",
+            "* Racine\n",
+            "** 1\n",
+            "*** 5\n",
+            "**** SAMU\n",
+            "*** 7\n",
+            "**** Police\n",
+            "@endmindmap\n",
+        );
+
+        assert_eq!(root.to_plantuml(), expected);
+    }
+}
