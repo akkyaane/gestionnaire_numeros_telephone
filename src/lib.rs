@@ -46,4 +46,25 @@ impl Node {
             children.display(depth + 1);
         }
     }
+
+    
+    pub fn to_plantuml(&self) -> String {
+        fn visit(node: &Node, label: &str, depth: usize, output: &mut String) {
+            output.push_str(&format!("{} {label}\n", "*".repeat(depth)));
+
+            if let Some(value) = &node.value {
+                let value = value.replace('\\', "\\\\").replace('\r', "").replace('\n', "\\n");
+                output.push_str(&format!("{} {value}\n", "*".repeat(depth + 1)));
+            }
+
+            for (digit, child) in &node.children {
+                visit(child, &digit.to_string(), depth + 1, output);
+            }
+        }
+
+        let mut output = String::from("@startmindmap\n");
+        visit(self, "Racine", 1, &mut output);
+        output.push_str("@endmindmap\n");
+        output
+    }
 }
