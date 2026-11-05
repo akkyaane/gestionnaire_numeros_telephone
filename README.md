@@ -50,7 +50,7 @@ without international prefixes such as `+33`.
 ## Output
 
 The program prints the trie in the terminal and generates
-`exemple/annuaire.puml`. The folder is created automatically, and each run
+`graph/annuaire.puml`. The folder is created automatically, and each run
 overwrites the previous diagram.
 
 The MindMap contains one node per digit and a separate node for each contact's

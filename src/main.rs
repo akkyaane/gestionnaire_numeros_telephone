@@ -15,10 +15,10 @@ fn main() {
 
     root.display(1);
 
-    match std::fs::create_dir_all("exemple")
-        .and_then(|()| std::fs::write("exemple/annuaire.puml", root.to_plantuml()))
+    match std::fs::create_dir_all("graph")
+        .and_then(|()| std::fs::write("graph/annuaire.puml", root.to_plantuml()))
     {
-        Ok(()) => println!("Fichier PlantUML genere : exemple/annuaire.puml"),
+        Ok(()) => println!("Fichier PlantUML genere : graph/annuaire.puml"),
         Err(e) => eprintln!("Erreur lors de l'export PlantUML : {e}"),
     }
 }
