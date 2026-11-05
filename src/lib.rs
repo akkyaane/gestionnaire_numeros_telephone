@@ -63,7 +63,9 @@ impl Node {
         }
 
         let mut output = String::from("@startmindmap\n");
-        visit(self, "Racine", 1, &mut output);
+        for (digit, child) in &self.children {
+            visit(child, &digit.to_string(), 1, &mut output);
+        }
         output.push_str("@endmindmap\n");
         output
     }
@@ -81,12 +83,11 @@ mod tests {
 
         let expected = concat!(
             "@startmindmap\n",
-            "* Racine\n",
-            "** 1\n",
-            "*** 5\n",
-            "**** SAMU\n",
-            "*** 7\n",
-            "**** Police\n",
+            "* 1\n",
+            "** 5\n",
+            "*** SAMU\n",
+            "** 7\n",
+            "*** Police\n",
             "@endmindmap\n",
         );
 
